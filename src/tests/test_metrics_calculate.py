@@ -14,6 +14,7 @@ class Case:
     def __str__(self) -> str:
         return ""
 
+
 def get_test_cases():
     TEST_CASES = []
 
@@ -26,7 +27,6 @@ def get_test_cases():
     tree.create_node("2:1", 2, parent=1)
 
     TEST_CASES.append(Case(tree=tree, C=1, result=0))
-
 
     '''
     1:1

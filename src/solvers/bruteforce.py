@@ -5,6 +5,7 @@ import itertools
 from input_processing import *
 from metric_calculation import *
 
+
 @dataclasses.dataclass
 class BruteforceSolver:
     def __init__(self, tree, colors, N):
@@ -18,13 +19,13 @@ class BruteforceSolver:
         self.C = len(color_to_node)
         self.L = len(node_to_color)
 
-
-    def solve(self) -> int: # TODO: change in to solver output struct
+    def solve(self) -> int:  # TODO: change in to solver output struct
         tree = string_input_to_tree(self.tree, self.colors)
         # DEBUG = True
         tree.show()
         s = 0
-        for combination in itertools.product(range(1, self.C + 1), repeat=self.N - self.L):
+        for combination in itertools.product(
+                range(1, self.C + 1), repeat=self.N - self.L):
             # if DEBUG:
             #     self.print_log(list(combination), self.C)
 
@@ -38,9 +39,8 @@ class BruteforceSolver:
             if is_tree_valid(tree):
                 cur_s = calculate_s_metric(tree, self.C)
                 s = max(s, cur_s)
-        
-        return s
 
+        return s
 
     # def print_log(combination, C):
     #     if len(combination) > 2:

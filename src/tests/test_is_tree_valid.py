@@ -13,6 +13,7 @@ class Case:
     def __str__(self) -> str:
         return ""
 
+
 def get_test_cases():
     TEST_CASES = []
 
@@ -25,7 +26,6 @@ def get_test_cases():
     tree.create_node("2:2", 2, parent=1)
 
     TEST_CASES.append(Case(tree, False))
-
 
     '''
 	1:1
@@ -40,7 +40,6 @@ def get_test_cases():
     tree.create_node("4:2", 4, parent=2)
 
     TEST_CASES.append(Case(tree, True))
-
 
     '''
 	1:1
@@ -59,7 +58,6 @@ def get_test_cases():
     tree.create_node("6:3", 6, parent=5)
 
     TEST_CASES.append(Case(tree, False))
-
 
     '''
 	1:1
@@ -86,4 +84,3 @@ def get_test_cases():
 def test_tree_to_string(t: Case) -> None:
     t.tree.show()
     assert t.result == is_tree_valid(t.tree)
-
