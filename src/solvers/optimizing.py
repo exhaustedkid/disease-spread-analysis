@@ -24,13 +24,9 @@ class OptimizingSolver:
 
         constraints, objective = self.get_problem_statement(d, x_lb, x_ub)
 
-        print("obj = ", objective)
-        print("co = ", constraints)
-        print("solvers = ", cp.installed_solvers())
         problem = cp.Problem(objective, constraints)
         problem.solve(solver=cp.SCIPY)
 
-        print("Solved = ", 0.5 * problem.value)
         return 0.5 * problem.value
 
 

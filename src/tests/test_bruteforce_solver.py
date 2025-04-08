@@ -1,7 +1,7 @@
 import pytest
 import dataclasses
 
-from solvers.optimizing import OptimizingSolver
+from solvers.bruteforce import BruteforceSolver
 
 @dataclasses.dataclass
 class Case:
@@ -33,9 +33,14 @@ TEST_CASES = [
     	 colors="7:1,8:2,9:3,10:3,11:4,12:4,13:5",
 		 N = 13,
          result=44),
+
+    # Case(tree="1->2,1->3,2->4,2->7,4->5,4->6,5->10,5->11,5->12,6->13,6->14,7->15,3->8,3->9,8->16,8->17,9->18,9->19,9->20",
+    #      colors="10:1,11:2,12:3,13:1,14:2,15:3,16:4,17:5,18:4,19:5,20:6",
+    #      N=20,
+    #      result=41)  # 3917.98s (1:05:17)
 ]
 
 @pytest.mark.parametrize("t", TEST_CASES, ids=str)
 def test_optimizing_solver(t: Case) -> None:
-	solver = OptimizingSolver(t.tree, t.colors, t.N)
+	solver = BruteforceSolver(t.tree, t.colors, t.N)
 	assert t.result == solver.solve()
