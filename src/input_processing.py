@@ -36,11 +36,6 @@ def tree_to_dict(tree_str: str) -> dict[int, list[int]]:
     return result
 
 
-#######################
-# Tree processing
-#######################
-
-
 def string_input_to_tree(tree_str: str, colors_str: str):
     colors = colors_to_dict(colors_str)
 
@@ -61,12 +56,26 @@ def string_input_to_tree(tree_str: str, colors_str: str):
     return tree
 
 
-def tree_to_str(tree) -> str:
+#######################
+# Tree processing
+#######################
+
+
+def tree_to_str(tree) -> tuple:
     tree_str = ""
     for node in tree.all_nodes():
-        print(node.fpointer)
+        for child in node.fpointer:
+            if tree_str:
+                tree_str += ","
+            tree_str += f"{get_node_id(node)}->{get_node_id(tree.get_node(child))}"
 
-    return tree_str
+    colors_str = ""
+    for leave in tree.leaves():
+        if colors_str:
+            colors_str += ","
+        colors_str += f"{get_node_id(leave)}:{get_color(leave)}"
+
+    return (tree_str, colors_str)
 
 
 def get_color(node):
@@ -77,7 +86,6 @@ def get_color(node):
     return int(color)
 
 
-# tree_raw = '1->2,1->3,2->4,2->5,4->7,4->6,6->8,6->9,5->10,5->11,3->12,3->13'
-# colors_raw = '7:1,8:2,9:3,10:3,11:4,12:4,13:5'
-# print_tree(tree_raw, colors_raw)
-# print(get_colors(colors_raw))
+def get_node_id(node):
+    node_id, color = node.tag.split(":")
+    return int(node_id)
